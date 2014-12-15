@@ -1,0 +1,28 @@
+
+<div ng-controller="TimeseriesDataCtrl">
+
+	<div class="masthead">
+		<ul class="nav nav-pills pull-right">
+			<li><a href="#/services/{{serviceId}}/timeseries/{{timeseriesId}}">back</a></li>
+		</ul>
+		<h3 class="muted">Timeseries Data</h3>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Time</th>
+				<th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / {{timeseriesMetadata.uom}}</th>
+				<!-- <th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / {{timeseriesMetadata.uom | toDisplayUom}}</th> -->
+				<!-- <th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / <span sos-to-display-uom>{{timeseriesMetadata.uom}}</span></th> -->
+				<!-- <th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / <span sos-to-display-uom></span></th> -->
+				<!-- <th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / <span sos-to-display-uom ng-model="{{timeseriesMetadata.uom}}"></span></th> -->
+				<!-- <th ng-bind-html="timeseriesMetadata.uom">{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / {{timeseriesMetadata.uom}}</th> -->
+			</tr>
+		</thead>
+		<tr ng-repeat="row in timeseriesData.values">
+			<td>{{row.timestamp | date:'yyyy-MM-dd HH:mm:ss':'UTC'}}</td>
+			<td>{{row.value}}</td>
+		</tr>
+	</table>
+</div>

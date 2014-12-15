@@ -1,0 +1,51 @@
+
+<div ng-controller="TimeseriesDetailCtrl">
+
+	<div class="masthead">
+		<ul class="nav nav-pills pull-right">
+			<li><a href="#/services/{{serviceId}}/timeseries">back</a></li>
+		</ul>
+		<h3 class="muted">Timeseries</h3>
+	</div>
+
+
+	<div>
+	    <div class="row">
+	        <div class="col-md-3">
+	            <p class="input-group">
+	              <div class="form-group input-group" ng-controller="DatepickerStartCtrl">
+	              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="timespan.start" is-open="opened1" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="open($event, 'opened1')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	              </div>
+	              <div class="form-group input-group" ng-controller="DatepickerEndCtrl">
+	              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="timespan.end" is-open="opened2" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="open($event, 'opened2')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	              </div>
+	            </p>
+	        </div>
+	    </div>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Offering Label</th>
+				<th>Phenomenon Label</th>
+				<th>Units of Measure</th>
+				<th>Get Data</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>{{timeseries.id}}</td>
+			<td>{{timeseries.parameters.offering.label}}</td>
+			<td>{{timeseries.parameters.phenomenon.label}}</td>
+			<td>{{timeseries.uom}}</td>
+			<td><a href="#/services/{{serviceId}}/timeseries/{{timeseries.id}}/getData">Data</a></td>
+		</tr>
+	</table>
+</div>

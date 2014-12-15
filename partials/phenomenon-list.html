@@ -1,0 +1,20 @@
+
+<div ng-controller="PhenomenonListCtrl">
+
+	<div class="masthead">
+		<ul class="nav nav-pills pull-right">
+			<li><a href="#/services/{{serviceId}}">back</a></li>
+		</ul>
+		<h3 class="muted">Phenomena</h3>
+	</div>
+	
+    <div class="span5 pull-left parameterList">
+        <input type="text" ng-model="search" placeholder="Filter by name...">
+		<ul class="phenomena">
+			<li ng-repeat="phenomenon in phenomena | filter:searchInRelevantProperties">
+				<!-- decode twice since browser decodes automatically when routing -->
+				<a href="#/services/{{serviceId}}/phenomena/{{utils.doubleEncode(phenomenon.id)}}">{{phenomenon.label}}</a>
+			</li>
+		</ul>
+	</div>
+</div>

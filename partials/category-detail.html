@@ -1,0 +1,23 @@
+
+<div ng-controller="CategoryDetailCtrl">
+
+	<div class="masthead">
+		<ul class="nav nav-pills pull-right">
+			<li><a href="#/services/{{serviceId}}/categories">back</a></li>
+		</ul>
+		<h3 class="muted">Category</h3>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+                <th>Label</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>{{category.id}}</td>
+            <td>{{category.label}}</td>
+		</tr>
+	</table>
+</div>
