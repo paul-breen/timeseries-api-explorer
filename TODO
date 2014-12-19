@@ -1,4 +1,0 @@
-Get the datepickers working.  The start/end dates need to be passed from the controllers to the TimeseriesDataService?
-
-When working, clean up the whole angualar/bootstrap/ui-bootstrap/jquery stuff.
-

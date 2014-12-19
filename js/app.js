@@ -86,12 +86,10 @@ angular.module('myApp', ['myApp.services', 'myApp.directives', 'myApp.controller
     templateUrl: 'partials/timeseries-data.html', 
     controller: 'TimeseriesDataCtrl' 
   });
-/*** TODO: ***/
-  /* $routeProvider.when('/services/:serviceId/timeseries/:timeseriesId/getPlot', {
+  $routeProvider.when('/services/:serviceId/timeseries/:timeseriesId/getPlot', {
     templateUrl: 'partials/timeseries-plot.html', 
-    template : '<a ng-href="{{ts_url}}"></a>',
-    controller: 'TimeseriesPlotCtrl' 
-  }); */
+    controller: 'TimeseriesDataCtrl' 
+  });
 
   // Fallback route
   $routeProvider.otherwise({redirectTo: '/services'});

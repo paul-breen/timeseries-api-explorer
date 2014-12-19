@@ -13,11 +13,6 @@
 			<tr>
 				<th>Time</th>
 				<th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / {{timeseriesMetadata.uom}}</th>
-				<!-- <th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / {{timeseriesMetadata.uom | toDisplayUom}}</th> -->
-				<!-- <th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / <span sos-to-display-uom>{{timeseriesMetadata.uom}}</span></th> -->
-				<!-- <th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / <span sos-to-display-uom></span></th> -->
-				<!-- <th>{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / <span sos-to-display-uom ng-model="{{timeseriesMetadata.uom}}"></span></th> -->
-				<!-- <th ng-bind-html="timeseriesMetadata.uom">{{timeseriesMetadata.parameters.phenomenon.label | toDisplayName | toTitleCase}} / {{timeseriesMetadata.uom}}</th> -->
 			</tr>
 		</thead>
 		<tr ng-repeat="row in timeseriesData.values">

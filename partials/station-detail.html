@@ -8,8 +8,10 @@
 		<h3 class="muted">Station</h3>
 	</div>
 
-	<section>
-        <map id="single-station-map" data-features="station" class="span4"></map>
+	<div>
+
+	<div class="row col-lg-12">
+        <map id="single-station-map" data-features="station" class="span4 pull-left"></map>
 		<div class="span7 pull-right">
 			<table class="table">
 				<thead>
@@ -22,10 +24,10 @@
 				</tr>
 			</table>
 		</div>
-		
-	</section>
+	</div>
 
-	<section class="span12">
+	<div class="row col-lg-12">
+	<div class="span12 pull-left col-lg-12">
 
 		<h4>Timeseries</h4>
 
@@ -33,26 +35,27 @@
 			<thead>
 				<tr>
 					<th>#</th>
-                    <th>ID</th>
+			                <th>ID</th>
 					<th>Offering</th>
+					<th>Phenomenon</th>
 					<th>Feature</th>
 					<th>Procedure</th>
-					<th>Phenomenon</th>
-					<th>Diagram</th>
+					<th>Details</th>
 				</tr>
 			</thead>
-			<tr ng-repeat="timeseries in station.properties.timeseries">
-                <td>{{$index + 1}}</td>
-				<td>{{timeseries.timeseriesId}}</td>
-				<td>{{timeseries.offering}}</td>
-				<td>{{timeseries.feature}}</td>
-				<td>{{timeseries.procedure}}</td>
-				<td>{{timeseries.phenomenon}}</td>
-				<td><a ng-href="../api/v1/timeseries/{{timeseries.timeseriesId}}.png">diagram</a></td>
+			<tr ng-repeat="(id,timeseries) in station.properties.timeseries">
+				<td>{{$index + 1}}</td>
+				<td>{{id}}</td>
+				<td>{{timeseries.offering.label}}</td>
+				<td>{{timeseries.phenomenon.label}}</td>
+				<td>{{timeseries.feature.label}}</td>
+				<td>{{timeseries.procedure.label}}</td>
+				<td><a ng-href="#/services/{{serviceId}}/timeseries/{{id}}">Details</a></td>
 			</tr>
 			</tr>
 		</table>
-	</section>
+	</div>
+	</div>
 
-
+	</div>
 </div>

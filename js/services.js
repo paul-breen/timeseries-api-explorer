@@ -103,7 +103,7 @@ angular.module('myApp.services', [ 'ngResource' ])
 		})
 	.factory('StationService',
 		function($resource) {
-			return $resource(base + 'stations/:stationId?service=:serviceId', {}, {
+			return $resource(base + 'stations/:stationId?service=:serviceId&expanded=true', {}, {
 				getStations : {
 					method : 'GET',
 					params : {
@@ -183,18 +183,4 @@ angular.module('myApp.services', [ 'ngResource' ])
 					end: null
 				}
 			};
-		})
-	.factory('TimeseriesPlotService',
-		function($resource) {
-			// return $resource(':baseUrl/timeseries/:timeseriesId.png', {}, {
-			return $resource(base + 'timeseries/:timeseriesId?service=:serviceId', {}, {
-				getSingleTimeseriesPlot : {
-					method : 'GET',
-					params : {
-						baseUrl: ':baseUrl',
-						timeseriesId : ':timeseriesId'
-					},
-					isArray : false
-				}
-			});
 		});

@@ -2,10 +2,12 @@
 
 #station-overview-map {
     height: 600px;
+    width: 60%;
 }
 
 #single-station-map {
-	height: 250px;
+    height: 250px;
+    width: 50%;
 }
 
 .parameterList {
@@ -17,3 +19,4 @@
 body {
   margin: 10px;
 }
+

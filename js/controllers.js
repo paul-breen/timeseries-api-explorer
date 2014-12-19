@@ -110,18 +110,28 @@ angular.module('myApp.controllers', [])
 		  if($scope.search) {
 			  search = $scope.search.toLowerCase();
 		  }
-		  name = station.properties.station.toLowerCase();
+		  name = station.properties.label.toLowerCase();
 		  return !$scope.search || name.indexOf(search) !== -1;
 	  };
   }])
   .controller('StationDetailCtrl', [ '$scope','$routeParams','StationService',function ($scope,$routeParams,service) {
+	  var getTimeseriesIds = function(station) {
+		if(station.properties) {
+			var keys = [];
+			for(var k in station.properties.timeseries) {
+				keys.push(k);
+			}
+			$scope.timeseriesIds = keys;
+		}
+	  };
+
 	  $scope.station = service.getStation({
 			  	serviceId: $routeParams.serviceId,
 			  	stationId: $routeParams.stationId
 	  		}, function() {
 	  			$scope.serviceId = $routeParams.serviceId;
 	  		});
-	  
+	  $scope.station.$promise.then(getTimeseriesIds);
   }])
   .controller('CategoryListCtrl', [ '$scope','$routeParams','CategoryService','Utils',function ($scope,$routeParams,service,utils) {
 	  // debugger;
@@ -192,6 +202,9 @@ angular.module('myApp.controllers', [])
 		  		$scope.serviceId = $routeParams.serviceId;
 			  	$scope.timeseriesId = $routeParams.timeseriesId;
 		  	});
+
+	  // Construct the URL for the corresponding backend-rendered plot
+	  $scope.timeseriesPlotUrl = '../api/v1/timeseries/' + $routeParams.timeseriesId + '/getData.png?service=' + $routeParams.serviceId + '&timespan=' + $scope.timespanSpec;
   }])
   .controller('DatepickerStartCtrl', ['$scope','$routeParams','TimeseriesDataService',
   function ($scope, $routeParams, service) {

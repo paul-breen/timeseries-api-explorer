@@ -37,7 +37,8 @@
 				<th>Offering Label</th>
 				<th>Phenomenon Label</th>
 				<th>Units of Measure</th>
-				<th>Get Data</th>
+				<th>Data</th>
+				<th>Diagram</th>
 			</tr>
 		</thead>
 		<tr>
@@ -46,6 +47,7 @@
 			<td>{{timeseries.parameters.phenomenon.label}}</td>
 			<td>{{timeseries.uom}}</td>
 			<td><a href="#/services/{{serviceId}}/timeseries/{{timeseries.id}}/getData">Data</a></td>
+			<td><a href="#/services/{{serviceId}}/timeseries/{{timeseries.id}}/getPlot">Diagram</a></td>
 		</tr>
 	</table>
 </div>
