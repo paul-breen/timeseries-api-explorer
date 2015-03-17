@@ -1,7 +1,29 @@
 'use strict';
 
+// This needs to be set during the app build phase
+var appVersionString = "1.0.0";
+
 /* Directives */
 angular.module('myApp.directives',[])
+.directive('appVersion', function() {
+        return {
+            restrict: 'A',
+            replace: true,
+            link: function (scope, elem, attrs) {
+                elem.html(appVersionString);
+            }
+        };
+})
+.directive('back', ['$window', function($window) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
+                    $window.history.back();
+                });
+            }
+        };
+}])
 .directive('map', ['$timeout','$filter',function($timeout,$filter) {
 	    return {
 	        restrict: 'E',

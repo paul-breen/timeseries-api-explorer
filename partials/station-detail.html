@@ -20,7 +20,7 @@
 					</tr>
 				</thead>
 				<tr>
-					<td>{{station.properties.id}}</td>
+					<td><a href="#/api/stations/{{station.properties.id}}">{{station.properties.id}}</a></td>
 				</tr>
 			</table>
 		</div>
@@ -51,7 +51,6 @@
 				<td>{{timeseries.feature.label}}</td>
 				<td>{{timeseries.procedure.label}}</td>
 				<td><a ng-href="#/services/{{serviceId}}/timeseries/{{id}}">Details</a></td>
-			</tr>
 			</tr>
 		</table>
 	</div>

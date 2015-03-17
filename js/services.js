@@ -1,7 +1,13 @@
 'use strict';
 
 /* Services */
-var base = '../api/v1/';
+
+var apiExplorerPath = 'explorer';
+var apiVersionNumber = '1';
+var apiVersionString = 'v' + apiVersionNumber;
+var apiBasePath = 'api/' + apiVersionString;
+var base = '../' + apiBasePath + '/';
+
 angular.module('myApp.services', [ 'ngResource' ])
 	.service('Utils',
 		function _construct() {
@@ -9,6 +15,24 @@ angular.module('myApp.services', [ 'ngResource' ])
 				return encodeURIComponent(encodeURIComponent(toEncode));
 			};
 		})
+	.factory('ApiService', ['$location', function ($location) {
+		return {
+			getApiVersionNumber: function() {
+				return apiVersionNumber;
+			},
+			getApiVersionString: function() {
+				return apiVersionString;
+			},
+			getApiAppUrl: function() {
+				var here = $location.absUrl();
+				var appUrl = here.replace(new RegExp('^(.+)/' + apiExplorerPath + '.*'), '$1');
+				return appUrl;
+			},
+			getApiBaseUrl: function() {
+				return this.getApiAppUrl() + '/' + apiBasePath;
+			}
+		};
+	}])
 	.factory('SosInstanceService',
 		function($resource) {
 			return $resource(base + 'services/:serviceId?expanded=true', {}, {

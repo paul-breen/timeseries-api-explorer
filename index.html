@@ -25,11 +25,20 @@
     <div ng-view></div>
   </div>
 
-<!-- 
-  <footer>
-    Angular seed app: v<span app-version></span>
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div ng-controller="AppFooterCtrl">
+        <div>
+          Timeseries API Explorer: v<span app-version></span>
+          <a href="{{apiDocumentationUrl}}"><span class="pull-right">Timeseries API Documentation</span></a>
+        </div>
+        <div>
+          <span>Timeseries API: {{apiVersionString}}</span>
+          <a href="{{apiBaseUrl}}/"><span class="pull-right">Timeseries API URL</span></a>
+        </div>
+      </div>
+    </div>
   </footer>
--->
 
 <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>

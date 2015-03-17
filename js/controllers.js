@@ -2,6 +2,37 @@
 
 /* Controllers */
 angular.module('myApp.controllers', [])
+  .controller('AppFooterCtrl', [ '$scope','$routeParams','ApiService',function ($scope,$routeParams,ApiService) {
+	  $scope.apiVersionString = ApiService.getApiVersionString();
+	  $scope.apiDocumentationUrl = ApiService.getApiAppUrl() + '/api-doc/index.html';
+	  $scope.apiBaseUrl = ApiService.getApiBaseUrl();
+  }])
+  .controller('ApiDetailCtrl', [ '$scope','$routeParams','ApiService',function ($scope,$routeParams,ApiService) {
+	  $scope.apiBaseUrl = ApiService.getApiBaseUrl();
+	  $scope.apiCollectionType = $routeParams.apiCollectionType;
+	  $scope.apiCollectionId = $routeParams.apiCollectionId;
+	  $scope.apiFunctions = [];
+
+	  $scope.apiFunctions.push({
+	    "apiFunctionType": "metadata",
+	    "apiCollectionType": $routeParams.apiCollectionType,
+	    "apiCollectionUrl": $scope.apiBaseUrl + '/' + $scope.apiCollectionType + '/' + $scope.apiCollectionId + '/'
+	  });
+
+	  // The timeseries collection type has extra URLs
+	  if($routeParams.apiCollectionType == "timeseries") {
+	    $scope.apiFunctions.push({
+	      "apiFunctionType": "data",
+	      "apiCollectionType": $routeParams.apiCollectionType,
+	      "apiCollectionUrl": $scope.apiBaseUrl + '/' + $scope.apiCollectionType + '/' + $scope.apiCollectionId + '/getData'
+	    });
+	    $scope.apiFunctions.push({
+	      "apiFunctionType": "plot",
+	      "apiCollectionType": $routeParams.apiCollectionType,
+	      "apiCollectionUrl": $scope.apiBaseUrl + '/' + $scope.apiCollectionType + '/' + $scope.apiCollectionId + '/getData.png'
+	    });
+          }
+  }])
   .controller('ServiceListCtrl', [ '$scope','SosInstanceService','Utils',function ($scope,service,utils) {
 	  $scope.utils = utils;
 	  $scope.services = service.getServiceInstances();
@@ -173,7 +204,11 @@ angular.module('myApp.controllers', [])
 		  return !$scope.search || (label.indexOf(search) !== -1 || offeringLabel.indexOf(search) !== -1 || phenomenonLabel.indexOf(search) !== -1);
 	  };
   }])
-  .controller('TimeseriesDetailCtrl', [ '$scope','$routeParams','TimeseriesService',function ($scope,$routeParams,service) {
+  .controller('TimeseriesDetailCtrl', [ '$scope','$routeParams','TimeseriesService','ApiService',function ($scope,$routeParams,service,ApiService) {
+          $scope.apiBaseUrl = ApiService.getApiBaseUrl();
+	  $scope.timeseriesMetadataUrl = $scope.apiBaseUrl + '/timeseries/' + $routeParams.timeseriesId + '/';
+	  $scope.timeseriesDataUrl = $scope.apiBaseUrl + '/timeseries/' + $routeParams.timeseriesId + '/getData';
+	  $scope.timeseriesPlotUrl = $scope.apiBaseUrl + '/timeseries/' + $routeParams.timeseriesId + '/getData.png';
 	  $scope.timeseries = service.getSingleTimeseries({
 			  	serviceId: $routeParams.serviceId,
 			  	timeseriesId: $routeParams.timeseriesId

@@ -1,0 +1,24 @@
+
+<div ng-controller="ApiDetailCtrl">
+
+	<div class="masthead">
+		<ul class="nav nav-pills pull-right">
+			<li><a href="" back>back</a></li>
+		</ul>
+		<h3 class="muted">Timeseries API</h3>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Function</th>
+				<th>URL</th>
+			</tr>
+		</thead>
+
+		<tr ng-repeat="f in apiFunctions">
+			<td>Get {{f.apiCollectionType | toDisplayName | toTitleCase}} {{f.apiFunctionType | toDisplayName | toTitleCase}}</td>
+			<td><a href="{{f.apiCollectionUrl}}">{{f.apiCollectionUrl}}</a></td>
+		</tr>
+	</table>
+</div>

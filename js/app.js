@@ -91,6 +91,12 @@ angular.module('myApp', ['myApp.services', 'myApp.directives', 'myApp.controller
     controller: 'TimeseriesDataCtrl' 
   });
 
+  // REST API routes
+  $routeProvider.when('/api/:apiCollectionType/:apiCollectionId', {
+    templateUrl: 'partials/api-detail.html',
+    controller: 'ApiDetailCtrl'
+  });
+
   // Fallback route
   $routeProvider.otherwise({redirectTo: '/services'});
 }]);
